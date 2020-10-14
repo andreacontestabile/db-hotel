@@ -90,3 +90,14 @@ ON prenotazioni.stanza_id = stanze.id
 JOIN `pagamenti`
 ON prenotazioni.id = pagamenti.prenotazione_id
 WHERE stanze.floor = 1
+
+
+- Prendi i dati di fatturazione per la prenotazione con id=7
+
+SELECT prenotazioni.id AS 'id_prenotazione', prenotazioni.created_at AS 'data_prenotazione', paganti.name AS 'nome_pagante', paganti.lastname AS 'cognome_pagante', paganti.address AS 'indirizzo_pagante', pagamenti.price AS 'prezzo_prenotazione'
+FROM `prenotazioni`
+JOIN `pagamenti`
+ON prenotazioni.id = pagamenti.prenotazione_id
+JOIN `paganti`
+ON pagamenti.pagante_id = paganti.id
+WHERE prenotazioni.id = 7
