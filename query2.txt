@@ -28,3 +28,12 @@ FROM `prenotazioni`
 GROUP BY HOUR(`created_at`)
 
 (intorno alle ore 03:00 le prenotazioni sono più frequenti)
+
+
+Quante prenotazioni ha fatto l’ospite che ha fatto più prenotazioni?
+
+SELECT `ospite_id`, COUNT('id') AS 'numero_prenotazioni'
+FROM `prenotazioni_has_ospiti`
+GROUP BY `ospite_id`
+
+(Gli ospiti che hanno fatto più prenotazioni hanno effettuato 3 prenotazioni)
