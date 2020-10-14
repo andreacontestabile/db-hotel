@@ -101,3 +101,12 @@ ON prenotazioni.id = pagamenti.prenotazione_id
 JOIN `paganti`
 ON pagamenti.pagante_id = paganti.id
 WHERE prenotazioni.id = 7
+
+
+- Le stanze sono state tutte prenotate almeno una volta? (Visualizzare le stanze non ancora prenotate)
+
+SELECT *
+FROM `prenotazioni`
+RIGHT JOIN `stanze`
+ON prenotazioni.stanza_id = stanze.id
+WHERE prenotazioni.stanza_id IS NULL
