@@ -1,4 +1,5 @@
 GROUP BY
+________________________
 
 Conta gli ospiti raggruppandoli per anno di nascita.
 
@@ -37,3 +38,17 @@ FROM `prenotazioni_has_ospiti`
 GROUP BY `ospite_id`
 
 (Gli ospiti che hanno fatto più prenotazioni hanno effettuato 3 prenotazioni)
+
+
+
+JOIN
+________________________
+
+Come si chiamano gli ospiti che hanno fatto più di due prenotazioni?
+
+SELECT `ospite_id`, `name`, `lastname`, COUNT('id') AS 'numero_prenotazioni_ospite'
+FROM `ospiti`
+JOIN `prenotazioni_has_ospiti`
+ON ospiti.id = prenotazioni_has_ospiti.ospite_id
+GROUP BY `ospite_id`
+HAVING COUNT('id') > 2
