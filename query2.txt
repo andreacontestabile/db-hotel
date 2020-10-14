@@ -52,3 +52,11 @@ JOIN `prenotazioni_has_ospiti`
 ON ospiti.id = prenotazioni_has_ospiti.ospite_id
 GROUP BY `ospite_id`
 HAVING COUNT('id') > 2
+
+
+Stampare tutti gli ospiti per ogni prenotazione
+
+SELECT `prenotazione_id`, `ospite_id`, `name`, `lastname`
+FROM `prenotazioni_has_ospiti`
+JOIN `ospiti`
+ON ospiti.id = prenotazioni_has_ospiti.ospite_id
