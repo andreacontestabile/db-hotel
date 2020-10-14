@@ -60,3 +60,22 @@ SELECT `prenotazione_id`, `ospite_id`, `name`, `lastname`
 FROM `prenotazioni_has_ospiti`
 JOIN `ospiti`
 ON ospiti.id = prenotazioni_has_ospiti.ospite_id
+
+
+Stampare Nome, Cognome, Prezzo e Pagante per tutte le prenotazioni fatte a Maggio 2018
+
+SELECT prenotazioni.created_at AS 'data_prenotazione', prenotazioni.id, ospiti.name AS 'nome_ospite', ospiti.lastname AS 'cognome_ospite', pagamenti.price AS 'prezzo', paganti.name AS 'nome_pagante', paganti.lastname AS 'cognome_pagante'
+FROM `prenotazioni_has_ospiti`
+JOIN `ospiti`
+ON prenotazioni_has_ospiti.ospite_id = ospiti.id
+JOIN `pagamenti`
+ON prenotazioni_has_ospiti.id = pagamenti.prenotazione_id
+JOIN `prenotazioni`
+ON prenotazioni.id = prenotazioni_has_ospiti.id
+LEFT JOIN `paganti`
+ON paganti.ospite_id = ospiti.id
+WHERE YEAR(prenotazioni.created_at) = 2018
+AND MONTH(prenotazioni.created_at) = 05
+ORDER BY prenotazioni.created_at;
+
+(mi sono complicato la vita ma funziona... giuro!)
